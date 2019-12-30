@@ -1,5 +1,9 @@
 # TicTacToe
-import sys, os, random, collections
+from sys import exit
+from os  import system
+from random      import randrange
+from collections import defaultdict
+from colorama    import *
 
 class Board():
     board  = { }
@@ -13,10 +17,11 @@ class Board():
 
     def show(self):
         # Show the playingboard in it's current state
-        os.system('clear')
+        system('clear')
+        print("\n"*3)
         for i in (2, 1, 0):
-            print(f"{self.board[i*3+1]}|{self.board[i*3+2]}|{self.board[i*3+3]}")
-            print("-+-+-") if i else print("")
+            print(f"\t{self.board[i*3+1]}|{self.board[i*3+2]}|{self.board[i*3+3]}")
+            print("\t-+-+-") if i else print("")
 
     def check_for_winner(self):
         # See if we have a winner yet
@@ -41,7 +46,7 @@ class PlayerTurn():
 
     def __init__(self):
         # Randomly choose who starts
-        self.turn = "X" if random.randrange(2) == 1 else "O"
+        self.turn = "X" if randrange(2) == 1 else "O"
 
     def next_turn(self):
         # Swap turns
@@ -73,11 +78,11 @@ class PlayerInput():
                 continue
 
     def wrong_input(self):
-        print("Between 1 and 9...")
+        print(Fore.RED + "Between 1 and 9..." + Style.RESET_ALL)
 
 
 def play():
-    score_count = collections.defaultdict(int)
+    score_count = defaultdict(int)
 
     while True:
         board   = Board()
@@ -93,14 +98,14 @@ def play():
                 if (mark_placed == True):
                     break
                 else:
-                    print("You can't do that...")
+                    print(Fore.YELLOW + "You can't do that." + Style.RESET_ALL)
 
             board.check_for_winner()
             board.show()
             if not board.winner:
                 p_turn.next_turn()
             else:
-                print(f"{p_turn.turn} wins this game!")
+                print(Style.BRIGHT + Fore.GREEN + f"{p_turn.turn} wins this game!" + Style.RESET_ALL)
                 score_count[p_turn.turn] += 1
                 break
 
@@ -114,7 +119,7 @@ def play():
             break
 
     print(dict(score_count))
-    sys.exit("Thanks for playing!")
+    exit("Thanks for playing!")
 
 
 # Let's play!
