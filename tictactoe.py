@@ -121,6 +121,6 @@ def play():
     print(dict(score_count))
     exit("Thanks for playing!")
 
-
-# Let's play!
-play()
+if __name__ == "__main__":
+    # Let's play!
+    play()
