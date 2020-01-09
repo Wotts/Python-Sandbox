@@ -2,6 +2,9 @@
 from random import randrange
 
 class CardDeck(list):
+    """ A deck of cards
+    type: list
+    """
     def __init__(self):
         self._new_shuffled_deck()
 
@@ -11,8 +14,11 @@ class CardDeck(list):
 
         for suit in suits:
             for rank in ranks:
-                self.append({ "suit":suit, "rank":rank })
+                self.append({"suit":suit, "rank":rank})
 
-    def TakeCard(self):
+    def take_card(self):
+        """ Take a card
+        Returns:
+            card(dict): {"suit": "♥", "rank": "Q"}
+        """
         return self.pop(randrange(len(self)))
-

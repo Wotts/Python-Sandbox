@@ -1,2 +1,2 @@
 run:
-	PYTHONPATH=./src python bin/BlackJack.py
+	PYTHONPATH=./src python bin/blackjack.py
