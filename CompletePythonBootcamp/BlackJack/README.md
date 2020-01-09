@@ -1,1 +1,1 @@
-PYTHON_PATH=./src python bin/BlackJack.py
+PYTHONPATH=./src python bin/blackjack.py
